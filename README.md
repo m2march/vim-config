@@ -1,6 +1,7 @@
 # My Vim Configuration
 
 Plugins:
+
     * *pathogen* for easy plugin install
     * *ctrlp* for fuzzy file search. _Bindings:_
         * '<leader> e' opens fuzzy search
