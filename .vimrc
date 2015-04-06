@@ -189,6 +189,7 @@ map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 let g:pymode_rope_goto_definition_bind = "<leader>d"
 let g:pymode_rope_goto_definition_cmd = "tabe"
 let g:pymode_lint_unmodified = 1
+let g:pymode_lint_ignore = "E265"
 let g:pymode_doc = 0
 
 " Settings for jedi-vim
