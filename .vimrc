@@ -189,7 +189,7 @@ map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 let g:pymode_rope_goto_definition_bind = "<leader>d"
 let g:pymode_rope_goto_definition_cmd = "tabe"
 let g:pymode_lint_unmodified = 1
-let g:pymode_lint_ignore = "E265"
+let g:pymode_lint_ignore = "E265,E731"
 let g:pymode_doc = 0
 
 " Settings for jedi-vim
@@ -230,6 +230,43 @@ set nofoldenable
 
 map <leader>op :Voom python <CR>
 map <leader>om :Voom markdown <CR>
+map <leader>ol :Voom latex <CR>
 
 let g:voom_tree_placement = 'right'
 let g:voom_tree_width = &columns - 90
+
+
+" ============================================================================
+" TagBar Plugin 
+" ============================================================================
+
+nmap <leader>ojs :TagbarToggle<CR>
+
+let g:tagbar_width = &columns - 90
+let g:tagbar_sort = 0
+let g:tagbar_compact = 1
+
+
+" ============================================================================
+" TagBar Plugin 
+" ============================================================================
+
+let g:jshint2_read = 1
+let g:jshint2_save = 1
+let g:jshint2_height = 3
+
+
+" ============================================================================
+" Explore 
+" ============================================================================
+
+nmap <leader>ee :Hexplore!<CR>
+
+let g:netrw_winsize = 20
+
+
+" ============================================================================
+" Explore 
+" ============================================================================
+
+set splitright
