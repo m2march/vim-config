@@ -233,7 +233,7 @@ map <leader>om :Voom markdown <CR>
 map <leader>ol :Voom latex <CR>
 
 let g:voom_tree_placement = 'right'
-let g:voom_tree_width = &columns - 90
+let g:voom_tree_width = &columns - 100
 
 
 " ============================================================================
@@ -242,7 +242,7 @@ let g:voom_tree_width = &columns - 90
 
 nmap <leader>ojs :TagbarToggle<CR>
 
-let g:tagbar_width = &columns - 90
+let g:tagbar_width = &columns - 100
 let g:tagbar_sort = 0
 let g:tagbar_compact = 1
 
