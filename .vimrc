@@ -162,10 +162,13 @@ set t_Co=256
 " cd ~/.vim/bundle
 " git clone https://github.com/kien/ctrlp.vim.git
 let g:ctrlp_max_height = 30
-let g:ctrlp_map = '<leader>e'
+" let g:ctrlp_map = '<leader>eg'
+noremap <leader>eg :CtrlP<CR>
+noremap <leader>el :CtrlP .<CR>
 set wildignore+=*.pyc
 set wildignore+=*_build/*
 set wildignore+=*/coverage/*
+let g:ctrlp_clear_cache_on_exit = 1
 
 " Settings for YCM
 let g:ycm_autoclose_preview_window_after_insertion = 1
@@ -233,7 +236,7 @@ map <leader>om :Voom markdown <CR>
 map <leader>ol :Voom latex <CR>
 
 let g:voom_tree_placement = 'right'
-let g:voom_tree_width = &columns - 100
+let g:voom_tree_width = &columns - 90
 
 
 " ============================================================================
@@ -242,7 +245,7 @@ let g:voom_tree_width = &columns - 100
 
 nmap <leader>ojs :TagbarToggle<CR>
 
-let g:tagbar_width = &columns - 100
+let g:tagbar_width = &columns - 90
 let g:tagbar_sort = 0
 let g:tagbar_compact = 1
 
