@@ -135,6 +135,9 @@ set nobackup
 set nowritebackup
 set noswapfile
 
+" Right side tab width
+let right_side_width = min([100, &columns - 90])
+
 
 " Setup Pathogen to manage your plugins
 " mkdir -p ~/.vim/autoload ~/.vim/bundle
@@ -165,6 +168,7 @@ let g:ctrlp_max_height = 30
 " let g:ctrlp_map = '<leader>eg'
 noremap <leader>eg :CtrlP<CR>
 noremap <leader>el :CtrlP .<CR>
+noremap <leader>ecc :CtrlPClearAllCaches<CR>
 set wildignore+=*.pyc
 set wildignore+=*_build/*
 set wildignore+=*/coverage/*
@@ -236,7 +240,7 @@ map <leader>om :Voom markdown <CR>
 map <leader>ol :Voom latex <CR>
 
 let g:voom_tree_placement = 'right'
-let g:voom_tree_width = &columns - 90
+let g:voom_tree_width = right_side_width
 
 
 " ============================================================================
@@ -245,7 +249,7 @@ let g:voom_tree_width = &columns - 90
 
 nmap <leader>ojs :TagbarToggle<CR>
 
-let g:tagbar_width = &columns - 90
+let g:tagbar_width = right_side_width
 let g:tagbar_sort = 0
 let g:tagbar_compact = 1
 
