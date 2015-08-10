@@ -1,0 +1,3 @@
+[submodule "bundle/VOoM"]
+	path = bundle/VOoM
+	url = https://github.com/vim-voom/VOoM
