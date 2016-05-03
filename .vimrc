@@ -185,25 +185,30 @@ noremap <leader>yd :YcmCompleter GoTo<CR>
 " and uncomment the part about jedi-vim instead
 " cd ~/.vim/bundle
 " git clone https://github.com/klen/python-mode
-map <Leader>g :call RopeGotoDefinition()<CR>
-let g:pymode_rope_completion = 0
-let g:pymode_rope_extended_complete = 0
-let g:pymode_breakpoint = 0
-let g:pymode_syntax = 1
-let g:pymode_syntax_builtin_objs = 0
-let g:pymode_syntax_builtin_funcs = 0
-map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
-let g:pymode_rope_goto_definition_bind = "<leader>d"
-let g:pymode_rope_goto_definition_cmd = "tabe"
-let g:pymode_lint_unmodified = 1
-let g:pymode_lint_ignore = "E265,E731"
-let g:pymode_doc = 0
+"" map <Leader>g :call RopeGotoDefinition()<CR>
+"" let g:pymode_rope = 0
+"" let g:pymode_rope_autoimport = 0
+"" let g:pymode_rope_completion = 0
+"" let g:pymode_rope_extended_complete = 0
+"" let g:pymode_breakpoint = 0
+"" let g:pymode_syntax = 1
+"" let g:pymode_syntax_builtin_objs = 0
+"" let g:pymode_syntax_builtin_funcs = 0
+"" map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+"" let g:pymode_rope_goto_definition_bind = "<leader>d"
+"" let g:pymode_rope_goto_definition_cmd = "tabe"
+"" let g:pymode_lint_unmodified = 1
+"" let g:pymode_lint_ignore = "E265,E731"
+"" let g:pymode_doc = 0
 
 " Settings for jedi-vim
 " cd ~/.vim/bundle
 " git clone git://github.com/davidhalter/jedi-vim.git
-"" let g:jedi#usages_command = "<leader>z"
-"" let g:jedi#popup_on_dot = 0
+let g:jedi#usages_command = "<leader>z"
+let g:jedi#documentation_command = "K"
+let g:jedi#use_tabs_not_buffers = 1
+let g:jedi#popup_on_dot = 0
+let g:jedi#smart_auto_mappings = 0
 "" let g:jedi#popup_select_first = 0
 "" map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
