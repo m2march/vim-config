@@ -7,14 +7,6 @@
 " DO NOT USE <C-z> FOR SAVING WHEN PRESENTING!
 " ============================================
 
-" Vundle
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
 
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
@@ -132,7 +124,6 @@ set wildignore+=*/coverage/*
 let g:ctrlp_clear_cache_on_exit = 1
 
 " YouCompleteMe
-Bundle 'Valloric/YouCompleteMe'
 let g:ycm_key_invoke_completion = '<C-Tab>'
 
 
