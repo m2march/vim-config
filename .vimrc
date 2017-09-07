@@ -57,10 +57,9 @@ set nolist  " list disables linebreak
 " " set formatoptions-=t   " automatically wrap text when typing
 
 " Real programmers don't use TABs but spaces
-set tabstop=4
+set tabstop=8
 set softtabstop=4
 set shiftwidth=4
-set shiftround
 set expandtab
 
 
@@ -125,6 +124,11 @@ let g:ctrlp_clear_cache_on_exit = 1
 
 " YouCompleteMe
 let g:ycm_key_invoke_completion = '<C-Tab>'
+let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
+
+" Jedi-vim
+let g:jedi#completions_command = '<C-j>'
+let g:jedi#use_tabs_not_buffers = 1
 
 
 " ============================================================================
@@ -136,3 +140,13 @@ nmap <leader>o :TagbarToggle<CR>
 let g:tagbar_width = right_side_width
 let g:tagbar_sort = 0
 let g:tagbar_compact = 1
+
+" Chromebook mappings
+" Change windows
+nmap <leader>wj :wincmd h<CR> 
+nmap <leader>wk :wincmd l<CR>
+
+" Syntastic
+let g:syntastic_python_checkers = ['flake8', 'python']
+command Pylint SyntasticCheck pylint
+
