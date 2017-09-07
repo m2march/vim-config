@@ -126,6 +126,8 @@ let g:ctrlp_clear_cache_on_exit = 1
 " YouCompleteMe
 let g:ycm_key_invoke_completion = '<C-Tab>'
 
+" Jedi-vim
+let g:jedi#use_tabs_not_buffers = 1
 
 " ============================================================================
 " TagBar Plugin 
@@ -136,3 +138,27 @@ nmap <leader>o :TagbarToggle<CR>
 let g:tagbar_width = right_side_width
 let g:tagbar_sort = 0
 let g:tagbar_compact = 1
+
+" Syntastic
+let g:syntastic_quiet_messages = {
+    \ "regex":   ['invalid-name',
+                \ 'missing-docstring',
+                \ 'too-few-public-methods'],
+    \ }
+let g:syntastic_python_checkers = ['pyflake', 'python']
+
+
+let g:jedi#completions_command = "<C-J>"
+
+" ============================================================================
+" Vundle 
+" ============================================================================
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'google/vim-maktaba'
+Plugin 'google/vim-codefmt'
+
+call vundle#end()
+filetype plugin indent on    " required
