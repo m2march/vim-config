@@ -11,6 +11,9 @@
 " Automatic reloading of .vimrc
 autocmd! bufwritepost .vimrc source %
 
+" Specific syntax
+autocmd BufNewFile,BufRead *.wppl set syntax=javascript
+
 
 " Rebind <Leader> key
 " I like to have it here becuase it is easier to reach than the default and
@@ -125,6 +128,7 @@ let g:ctrlp_clear_cache_on_exit = 1
 " YouCompleteMe
 let g:ycm_key_invoke_completion = '<C-Tab>'
 let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
+noremap <leader>d :YcmCompleter GoTo<CR>
 
 " Jedi-vim
 let g:jedi#completions_command = '<C-j>'
@@ -150,3 +154,13 @@ nmap <leader>wk :wincmd l<CR>
 let g:syntastic_python_checkers = ['flake8', 'python']
 command Pylint SyntasticCheck pylint
 
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'google/vim-maktaba'
+Plugin 'google/vim-codefmt'
+call vundle#end()            " required
+filetype plugin indent on    " required
