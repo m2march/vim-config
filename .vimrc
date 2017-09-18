@@ -168,16 +168,6 @@ let g:jedi#completions_command = "<C-J>"
 " ============================================================================
 " Vundle 
 " ============================================================================
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'google/vim-maktaba'
-Plugin 'google/vim-codefmt'
-
-<<<<<<< HEAD
-call vundle#end()
-=======
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -187,5 +177,4 @@ call vundle#begin()
 Plugin 'google/vim-maktaba'
 Plugin 'google/vim-codefmt'
 call vundle#end()            " required
->>>>>>> 02bfdfe3b32edf843ac10f0e00615404a45988e2
 filetype plugin indent on    " required
