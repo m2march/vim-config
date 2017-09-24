@@ -178,3 +178,6 @@ Plugin 'google/vim-maktaba'
 Plugin 'google/vim-codefmt'
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+" LanguageTool
+let g:languagetool_jar="~/.languagetool/LanguageTool-3.8/languagetool-commandline.jar"
