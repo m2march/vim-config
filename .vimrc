@@ -1,35 +1,92 @@
-" Sample .vimrc file by Martin Brochhaus
-" Presented at PyCon APAC 2012
-
-
-" ============================================
-" Note to myself:
-" DO NOT USE <C-z> FOR SAVING WHEN PRESENTING!
-" ============================================
-
-
-" Automatic reloading of .vimrc
-autocmd! bufwritepost .vimrc source %
-
-
-" Rebind <Leader> key
-" I like to have it here becuase it is easier to reach than the default and
-" it is next to ``m`` and ``n`` which I use for navigating between tabs.
+set nocompatible              " required
+filetype off                  " required
 let mapleader = ","
+syntax on
+
+" IDE Guide: ttps://realpython.com/vim-and-python-a-match-made-in-heaven/
+" + Flavors
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+Bundle 'Valloric/YouCompleteMe'
+
+" Syntax
+Plugin 'vim-syntastic/syntastic'
+Plugin 'nvie/vim-flake8'
+
+Plugin 'szymonmaszke/vimpyter' "Vundle
+
+" CtrlP
+Plugin 'kien/ctrlp.vim'
+
+" Lightline
+Plugin 'itchyny/lightline.vim'
+
+" Tagbar
+Plugin 'majutsushi/tagbar'
+
+" Indentation
+Plugin 'vim-scripts/indentpython.vim'
+
+"vim-json
+Plugin 'elzr/vim-json'
+
+Plugin 'srcery-colors/srcery-vim'
+
+Plugin 'ivanov/vim-ipython'
+
+Plugin 'tidalcycles/vim-tidal'
 
 
-" Bind nohl
-" Removes highlight of your last search
-" ``<C>`` stands for ``CTRL`` and therefore ``<C-n>`` stands for ``CTRL+n``
-noremap <C-n> :nohl<CR>
-vnoremap <C-n> :nohl<CR>
-inoremap <C-n> :nohl<CR>
+" add all your plugins here (note older versions of Vundle
+" used Bundle instead of Plugin)
 
+" ...
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" Indentation (Python)
+" au BufNewFile,BufRead *.py
+"     \ set tabstop=4
+"     \ set softtabstop=4
+"     \ set shiftwidth=4
+"     \ set textwidth=79
+"     \ set expandtab
+"     \ set autoindent
+"     \ set fileformat=unix
+" Real programmers don't use TABs but spaces
+set tabstop=8
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set textwidth=79
+
+
+" Unnecessary Whitespace
+" au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+set encoding=utf-8
+
+" YouCompleteMe
+let g:ycm_autoclose_preview_window_after_completion=0
+let g:ycm_goto_buffer_command = 'split'
+map <leader>d  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+map <leader>n  :YcmCompleter GoToReferences<CR>
+nnoremap <S-K> :YcmCompleter GetDoc<CR>
+let g:jedi#documentation_command = "<leader>r"
 
 " easier moving between tabs
 map <Leader>j <esc>:tabprevious<CR>
 map <Leader>k <esc>:tabnext<CR>
-
 
 " easier moving of code blocks
 " Try to go into visual mode (v), thenselect several lines of code here and
@@ -37,49 +94,10 @@ map <Leader>k <esc>:tabnext<CR>
 vnoremap < <gv  " better indentation
 vnoremap > >gv  " better indentation
 
-
-" Enable syntax highlighting
-" You need to reload this file for the change to apply
-filetype off
-filetype plugin indent on
-syntax on
-
-
 " Showing line numbers and length
 set number  " show line numbers
 set colorcolumn=80
 highlight ColorColumn ctermbg=233
-
-set tw=79   " width of document (used by gd)
-set wrap  " automatically wrap on load
-set linebreak
-set nolist  " list disables linebreak
-" " set formatoptions-=t   " automatically wrap text when typing
-
-" Real programmers don't use TABs but spaces
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set shiftround
-set expandtab
-
-
-" Disable stupid backup and swap files - they trigger too many events
-" for file system watchers
-set nobackup
-set nowritebackup
-set noswapfile
-
-" Right side tab width
-let right_side_width = min([100, &columns - 90])
-
-
-" Setup Pathogen to manage your plugins
-" mkdir -p ~/.vim/autoload ~/.vim/bundle
-" curl -so ~/.vim/autoload/pathogen.vim https://raw.githubusercontent.com/tpope/vim-pathogen/master/autoload/pathogen.vim
-" Now you can install any plugin into a .vim/bundle/plugin-name/ folder
-call pathogen#infect()
-
 
 " lightline
 let g:lightline = {
@@ -89,25 +107,32 @@ let g:lightline = {
       \ 'separator': { 'left': '', 'right': '' },
       \ 'subseparator': { 'left': '', 'right': '' }
       \ }
+set laststatus=2
+if !has('gui_running')
+      set t_Co=256
+endif
 
 " Taglist
+let right_side_width = float2nr(round(&columns * 0.25))
+let g:tagbar_width = right_side_width
 let Tlist_Close_On_Select = 0
 let Tlist_Use_Right_Window = 1
+nmap <leader>op :TagbarToggle<CR>
+
+let g:tagbar_type_markdown = {
+    \ 'ctagstype' : 'markdown',
+    \ 'kinds' : [
+        \ 'h:Heading_L1',
+        \ 'i:Heading_L2',
+        \ 'k:Heading_L3'
+    \ ]
+\ }
 
 
-" ============================================================================
-" Python IDE Setup
-" ============================================================================
-
-
-" Settings for vim-powerline
-" cd ~/.vim/bundle
-" git clone git://github.com/Lokaltog/vim-powerline.git
-set laststatus=2
-"" let g:Powerline_symbols = 'fancy'
-"" set encoding=utf-8
-set nocompatible
-set t_Co=256
+" SimplyFold
+let g:SimpylFold_docstring_preview=1
+let g:SimpylFold_fold_docstring=0
+let g:SimpylFold_fold_import=0
 
 
 " Settings for ctrlp
@@ -123,16 +148,28 @@ set wildignore+=*_build/*
 set wildignore+=*/coverage/*
 let g:ctrlp_clear_cache_on_exit = 1
 
-" YouCompleteMe
-let g:ycm_key_invoke_completion = '<C-Tab>'
+" Syntastic
+let g:syntastic_quiet_messages = {
+    \ "regex":   ['invalid-name',
+                \ 'missing-docstring',
+                \ 'too-few-public-methods'],
+    \ }
+let g:syntastic_python_checkers = ['pyflake', 'python', 'mypy']
 
+" Chromebook mappings
+" Change windows
+nmap <leader>wj :wincmd h<CR> 
+nmap <leader>wk :wincmd l<CR>
 
-" ============================================================================
-" TagBar Plugin 
-" ============================================================================
+" Backspace fix
+set backspace=indent,eol,start
 
-nmap <leader>o :TagbarToggle<CR>
+" Split to tab
+nmap <leader>ts <C-w>T
 
-let g:tagbar_width = right_side_width
-let g:tagbar_sort = 0
-let g:tagbar_compact = 1
+" Clipboard yank
+noremap <leader>yy :'<,'>w ! xclip -i -selection clipboard<CR>
+noremap <leader>pp :read ! xclip -o -selection<CR>
+
+" Reformat paragraph
+noremap <leader>rp v}gw 
