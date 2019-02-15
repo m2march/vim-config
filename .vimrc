@@ -44,6 +44,13 @@ Plugin 'ivanov/vim-ipython'
 
 Plugin 'tidalcycles/vim-tidal'
 
+" Add maktaba and codefmt to the runtimepath.
+" (The latter must be installed before it can be used.)
+Plugin 'google/vim-maktaba'
+Plugin 'google/vim-codefmt'
+" Also add Glaive, which is used to configure codefmt's maktaba flags. See
+" `:help :Glaive` for usage.
+Plugin 'google/vim-glaive'
 
 " add all your plugins here (note older versions of Vundle
 " used Bundle instead of Plugin)
@@ -52,27 +59,17 @@ Plugin 'tidalcycles/vim-tidal'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+call glaive#Install()
 filetype plugin indent on    " required
-
-" Indentation (Python)
-" au BufNewFile,BufRead *.py
-"     \ set tabstop=4
-"     \ set softtabstop=4
-"     \ set shiftwidth=4
-"     \ set textwidth=79
-"     \ set expandtab
-"     \ set autoindent
-"     \ set fileformat=unix
-" Real programmers don't use TABs but spaces
-set tabstop=8
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set textwidth=79
-
 
 " Unnecessary Whitespace
 " au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set noexpandtab
+set autoindent
+set smartindent
 
 set encoding=utf-8
 
