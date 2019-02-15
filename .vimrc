@@ -52,11 +52,6 @@ Plugin 'google/vim-codefmt'
 " `:help :Glaive` for usage.
 Plugin 'google/vim-glaive'
 
-" add all your plugins here (note older versions of Vundle
-" used Bundle instead of Plugin)
-
-" ...
-
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 call glaive#Install()
@@ -70,6 +65,10 @@ set shiftwidth=4
 set noexpandtab
 set autoindent
 set smartindent
+
+" Specific syntax
+autocmd BufNewFile,BufRead *.wppl set syntax=javascript
+
 
 set encoding=utf-8
 
@@ -126,12 +125,6 @@ let g:tagbar_type_markdown = {
 \ }
 
 
-" SimplyFold
-let g:SimpylFold_docstring_preview=1
-let g:SimpylFold_fold_docstring=0
-let g:SimpylFold_fold_import=0
-
-
 " Settings for ctrlp
 " cd ~/.vim/bundle
 " git clone https://github.com/kien/ctrlp.vim.git
@@ -158,6 +151,14 @@ let g:syntastic_python_checkers = ['pyflake', 'python', 'mypy']
 nmap <leader>wj :wincmd h<CR> 
 nmap <leader>wk :wincmd l<CR>
 
+" YouCompleteMe
+let g:ycm_key_invoke_completion = '<C-Tab>'
+let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
+noremap <leader>d :YcmCompleter GoTo<CR>
+
+" Jedi-vim
+let g:jedi#use_tabs_not_buffers = 1
+
 " Backspace fix
 set backspace=indent,eol,start
 
@@ -170,3 +171,20 @@ noremap <leader>pp :read ! xclip -o -selection<CR>
 
 " Reformat paragraph
 noremap <leader>rp v}gw 
+
+let g:tagbar_width = right_side_width
+let g:tagbar_sort = 0
+let g:tagbar_compact = 1
+
+" Syntastic
+let g:syntastic_quiet_messages = {
+    \ "regex":   ['invalid-name',
+                \ 'missing-docstring',
+                \ 'too-few-public-methods'],
+    \ }
+let g:syntastic_python_checkers = ['pyflake', 'python']
+
+command Pylint SyntasticCheck pylint
+
+" LanguageTool
+let g:languagetool_jar="~/.languagetool/LanguageTool-3.8/languagetool-commandline.jar"
