@@ -21,8 +21,6 @@ Bundle 'Valloric/YouCompleteMe'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
 
-Plugin 'szymonmaszke/vimpyter' "Vundle
-
 " CtrlP
 Plugin 'kien/ctrlp.vim'
 
@@ -35,31 +33,32 @@ Plugin 'majutsushi/tagbar'
 " Indentation
 Plugin 'vim-scripts/indentpython.vim'
 
-"vim-json
-Plugin 'elzr/vim-json'
-
-Plugin 'srcery-colors/srcery-vim'
-
 Plugin 'ivanov/vim-ipython'
 
 Plugin 'tidalcycles/vim-tidal'
+Plugin 'supercollider/scvim'
 
 " Add maktaba and codefmt to the runtimepath.
 " (The latter must be installed before it can be used.)
 Plugin 'google/vim-maktaba'
 Plugin 'google/vim-codefmt'
-" Also add Glaive, which is used to configure codefmt's maktaba flags. See
-" `:help :Glaive` for usage.
-Plugin 'google/vim-glaive'
 
+"Plugin 'plasticboy/vim-markdown'
+
+Plugin 'ternjs/tern_for_vim'
 " add all your plugins here (note older versions of Vundle
 " used Bundle instead of Plugin)
+
+" Ack inside vim
+Plugin 'mileszs/ack.vim' 
+
+" vim-latex
+Plugin 'lervag/vimtex'
 
 " ...
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-call glaive#Install()
 filetype plugin indent on    " required
 
 " Unnecessary Whitespace
@@ -73,6 +72,11 @@ set textwidth=79
 set smartindent
 
 set encoding=utf-8
+
+autocmd FileType javascript setlocal ts=2 sts=2 sw=2
+autocmd FileType cpp setlocal ts=2 sts=2 sw=2
+autocmd FileType tex setlocal ts=2 sts=2 sw=2
+
 
 " YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion=0
@@ -145,6 +149,7 @@ set wildignore+=*.pyc
 set wildignore+=*_build/*
 set wildignore+=*/coverage/*
 let g:ctrlp_clear_cache_on_exit = 1
+let g:ctrlp_working_path_mode = 'ra'
 
 " Syntastic
 let g:syntastic_quiet_messages = {
@@ -171,3 +176,18 @@ noremap <leader>pp :read ! xclip -o -selection<CR>
 
 " Reformat paragraph
 noremap <leader>rp v}gw 
+
+let maplocalleader=","
+nmap <localleader>e :TidalSend<CR>
+
+set visualbell
+
+" Algo2Tad
+au BufRead,BufNewFile *.tad
+\ nmap <c-l> :w<Return>:!python ~/algoritmos2/herramientas/algo2tad.py %<Return>:source %:r.vim<Return>|
+\ imap <c-l> <Esc><c-l>
+
+au FileType tex syn region commentFold start="%-%" end="^$" fold 
+au FileType tex hi commentFold ctermfg=DarkBlue
+au FileType tex hi Folded ctermfg=DarkBlue ctermbg=Black
+au FileType tex set foldmethod=syntax
