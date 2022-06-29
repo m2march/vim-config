@@ -13,3 +13,6 @@ vim -c :VundleInstall
 sudo apt install cmake g++
 cd ~/.vim/bundles/YouCompleteMe
 python install.py
+
+# Installing ctags
+sudo apt install ctags
